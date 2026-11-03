@@ -1,0 +1,8 @@
+{
+ "updated": "2026-11-03",
+ "note": "Below-alerts watch the cheapest listing; above-alerts watch the median. Each fires once when the price crosses the line.",
+ "alerts": [
+  {"id": 2450, "name": "Briarthorn", "op": ">", "price": 1000, "why": "Sell your Briarthorn: First Aid demand has pushed it above 10s"},
+  {"id": 2589, "name": "Linen Cloth", "op": "<", "price": 200, "why": "Cheap Linen for Tailoring and First Aid: buy under 2s"}
+ ]
+}
