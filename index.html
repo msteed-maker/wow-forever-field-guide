@@ -937,10 +937,10 @@ html.sp-open { overflow: hidden; }
 @keyframes sp-sway { 0%, 100% { transform: rotate(-1.6deg) skewX(-1deg); } 50% { transform: rotate(1.6deg) skewX(1deg); } }
 
 .sp-card { position: relative; width: min(640px, 100%); text-align: center; padding: 26px clamp(18px, 4vw, 40px) 24px;
-  background: linear-gradient(180deg, rgba(20, 43, 85, .82), rgba(10, 23, 51, .9));
+  background: linear-gradient(180deg, rgba(20, 43, 85, .64), rgba(10, 23, 51, .78));
   border: 2px solid #c9a24a; border-radius: 22px;
   box-shadow: 0 0 0 6px rgba(201, 162, 74, .18), 0 0 0 1px rgba(255,255,255,.08) inset, 0 30px 80px rgba(0, 0, 0, .55);
-  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); transform: translateY(14px) scale(.98); transition: transform .45s cubic-bezier(.2,.8,.2,1); }
+  -webkit-backdrop-filter: blur(7px) saturate(1.2); backdrop-filter: blur(7px) saturate(1.2); transform: translateY(14px) scale(.98); transition: transform .45s cubic-bezier(.2,.8,.2,1); }
 .splash.in .sp-card { transform: none; }
 .sp-card::before, .sp-card::after { content: ""; position: absolute; width: 22px; height: 22px; border: 2px solid #e9c77b; top: 10px; }
 .sp-card::before { left: 10px; border-right: 0; border-bottom: 0; border-top-left-radius: 8px; }
@@ -1002,6 +1002,73 @@ html.sp-open { overflow: hidden; }
 }
 
 .splash.nodays .sp-unit:first-child, .splash.nodays .sp-unit:first-child + .sp-colon { display: none; }
+
+/* party: fireworks canvases, the cake and its speech bubble */
+.sp-fx { position: absolute; inset: 0; pointer-events: none; }
+.sp-back { z-index: 0; }
+.sp-front { z-index: 5; }
+.sp-banner, .sp-card { z-index: 2; }
+.sp-party { display: flex; align-items: center; justify-content: center; gap: 4px; margin: 6px auto 14px; max-width: 470px; }
+.sp-party .sp-sub { position: relative; margin: 0; text-align: left; background: #fff8e6; color: #1d2130; border-radius: 16px; padding: 10px 14px;
+  font-weight: 600; font-size: .95rem; line-height: 1.35; box-shadow: 0 6px 18px rgba(0,0,0,.3); max-width: 300px; }
+.sp-party .sp-sub::before { content: ""; position: absolute; left: -9px; top: 50%; margin-top: -8px; border: 8px solid transparent; border-right-color: #fff8e6; border-left: 0; }
+.sp-party .sp-sub[data-quip] { background: #f6dd9a; animation: sp-bub .4s cubic-bezier(.2,1.6,.4,1); }
+.sp-party .sp-sub[data-quip]::before { border-right-color: #f6dd9a; }
+@keyframes sp-bub { from { transform: scale(.6) rotate(-4deg); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.sp-cake { position: relative; flex: none; width: 112px; height: 124px; padding: 0; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.sp-cake:focus-visible { outline: 2px solid rgba(255,255,255,.75); outline-offset: 2px; border-radius: 14px; }
+.sp-cake .ck { position: absolute; left: 0; right: 0; bottom: 6px; width: 100%; height: auto; overflow: visible; transform-origin: 50% 100%;
+  animation: ck-bop 1s cubic-bezier(.35,0,.25,1) infinite; filter: drop-shadow(0 6px 10px rgba(0,0,0,.35)); }
+.sp-cake .ck-shadow { position: absolute; left: 18%; right: 18%; bottom: 0; height: 9px; border-radius: 50%; background: rgba(0,0,0,.4); animation: ck-shadow 1s cubic-bezier(.35,0,.25,1) infinite; }
+@keyframes ck-bop {
+  0%   { transform: translateY(0) scale(1.08, .9); }
+  18%  { transform: translateY(0) scale(.94, 1.08); }
+  48%  { transform: translateY(-16px) scale(.98, 1.03) rotate(-3deg); }
+  62%  { transform: translateY(-17px) scale(1, 1) rotate(2deg); }
+  88%  { transform: translateY(0) scale(1.02, .98); }
+  100% { transform: translateY(0) scale(1.08, .9); }
+}
+@keyframes ck-shadow { 0%, 100% { transform: scaleX(1); opacity: .45; } 55% { transform: scaleX(.7); opacity: .22; } }
+.sp-cake .ck-flame { transform-box: fill-box; transform-origin: 50% 100%; animation: ck-flick .35s ease-in-out infinite alternate; }
+@keyframes ck-flick { from { transform: scale(1, 1) skewX(-4deg); } to { transform: scale(.88, 1.12) skewX(5deg); } }
+.sp-cake .ck-pupil { transform-box: fill-box; transform-origin: center; animation: ck-look 5s ease-in-out infinite; }
+@keyframes ck-look { 0%, 38% { transform: translate(0, 0); } 45%, 60% { transform: translate(-3px, -1px); } 68%, 82% { transform: translate(3px, 1px); } 90%, 100% { transform: translate(0, 0); } }
+.sp-cake .ck-lid { transform-box: fill-box; transform-origin: 50% 0; transform: scaleY(0); animation: ck-blink 4.2s infinite; }
+@keyframes ck-blink { 0%, 92%, 100% { transform: scaleY(0); } 95% { transform: scaleY(1); } }
+.sp-cake .ck-happy, .sp-cake .ck-o { opacity: 0; }
+.sp-cake .ck-popword { position: absolute; left: 50%; top: -6px; transform: translate(-50%, 0) scale(0); font-family: var(--display); font-weight: 800; font-size: 1.15rem; color: #1a1406;
+  background: #f6dd9a; border: 2px solid #fff4cf; border-radius: 10px; padding: 1px 8px; box-shadow: 0 4px 0 #a8812f; pointer-events: none; opacity: 0; }
+/* the pop: a big goofy hop with a spin, happy eyes and an O mouth */
+.sp-cake.pop .ck { animation: ck-pop 1s cubic-bezier(.3,.7,.3,1) 1; }
+.sp-cake.pop .ck-shadow { animation: ck-popshadow 1s ease 1; }
+.sp-cake.pop .ck-eyes, .sp-cake.pop .ck-grin { opacity: 0; }
+.sp-cake.pop .ck-happy, .sp-cake.pop .ck-o { opacity: 1; }
+.sp-cake.pop .ck-popword { animation: ck-word 1s cubic-bezier(.2,1.6,.4,1) 1; }
+@keyframes ck-pop {
+  0%   { transform: translateY(0) scale(1.2, .78); }
+  22%  { transform: translateY(-58px) scale(.88, 1.16) rotate(-14deg); }
+  45%  { transform: translateY(-70px) scale(1, 1) rotate(200deg); }
+  62%  { transform: translateY(-40px) scale(1, 1) rotate(360deg); }
+  78%  { transform: translateY(0) scale(1.18, .8) rotate(360deg); }
+  90%  { transform: translateY(-8px) scale(.96, 1.05) rotate(360deg); }
+  100% { transform: translateY(0) scale(1, 1) rotate(360deg); }
+}
+@keyframes ck-popshadow { 0%, 100% { transform: scaleX(1); opacity: .45; } 45% { transform: scaleX(.4); opacity: .1; } }
+@keyframes ck-word { 0% { transform: translate(-50%, 10px) scale(0) rotate(-12deg); opacity: 0; } 30% { transform: translate(-50%, -26px) scale(1.15) rotate(6deg); opacity: 1; }
+  75% { transform: translate(-50%, -34px) scale(1) rotate(-3deg); opacity: 1; } 100% { transform: translate(-50%, -44px) scale(.9); opacity: 0; } }
+/* launch party: faster bops */
+.sp-cake.party .ck { animation-duration: .5s; }
+.sp-cake.party .ck-shadow { animation-duration: .5s; }
+
+@media (max-width: 560px) {
+  .sp-cake { width: 86px; height: 96px; }
+  .sp-party .sp-sub { font-size: .86rem; padding: 8px 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sp-cake .ck, .sp-cake .ck-shadow, .sp-cake .ck-flame, .sp-cake .ck-pupil, .sp-cake .ck-lid, .sp-cake.pop .ck, .sp-cake.pop .ck-popword { animation: none !important; }
+  .sp-fx { display: none; }
+}
 </style>
 </head>
 <body>
@@ -2389,6 +2456,247 @@ html.sp-open { overflow: hidden; }
   }
 })();
 
+/* Splash party: canvas fireworks behind the card, confetti in front, and a goofy bopping birthday cake.
+   Exposes window.WFG_FX = { mount(splashEl), start(), stop(), pop(), salvo(n), finale() }. */
+(function () {
+  var REDUCED = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var GOLD = ["#fff4cf", "#f6dd9a", "#e9c77b"], BLUE = ["#9cc6ff", "#5f9bff", "#ffffff"],
+      FUN = ["#ff8fc7", "#7dffc0", "#c9a2ff", "#ffd36b", "#7fd8ff"];
+  var CONF = ["#f6dd9a", "#e9c77b", "#5f9bff", "#2b5299", "#ffffff", "#ff8fc7", "#7dffc0", "#c9a2ff"];
+
+  // Original cake: two tiers in Alliance blue and cream, gold trim, three candles, and a face.
+  var CAKE = '<svg class="ck" viewBox="0 0 160 176" aria-hidden="true"><defs>' +
+    '<linearGradient id="ckb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3563b3"/><stop offset="1" stop-color="#1b3c78"/></linearGradient>' +
+    '<linearGradient id="ckc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff7e4"/><stop offset="1" stop-color="#f1dfb8"/></linearGradient>' +
+    '<linearGradient id="ckg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a8812f"/><stop offset=".5" stop-color="#f6dd9a"/><stop offset="1" stop-color="#a8812f"/></linearGradient>' +
+    '<radialGradient id="ckf" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#fffbe8"/><stop offset=".45" stop-color="#ffd35c"/><stop offset="1" stop-color="#ff7a1a"/></radialGradient>' +
+    '<pattern id="cks" width="7" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(-30)"><rect width="7" height="8" fill="#fff"/><rect width="3.5" height="8" fill="#4f8cff"/></pattern>' +
+    '</defs>' +
+    '<g class="ck-body">' +
+      // plate
+      '<ellipse cx="80" cy="156" rx="66" ry="11" fill="url(#ckg)"/><ellipse cx="80" cy="153" rx="60" ry="8" fill="#fff4cf" opacity=".55"/>' +
+      // bottom tier
+      '<rect x="20" y="96" width="120" height="58" rx="13" fill="url(#ckb)"/>' +
+      '<rect x="20" y="140" width="120" height="7" fill="url(#ckg)"/>' +
+      '<path d="M20 109 Q20 96 33 96 H127 Q140 96 140 109 V111 q-5 9 -10 0 q-4 13 -11 0 q-5 7 -10 0 q-6 15 -12 0 q-5 8 -11 0 q-5 11 -10 0 q-5 7 -10 0 q-6 14 -12 0 q-5 8 -10 0 q-5 10 -10 0 q-3 6 -4 0 Z" fill="url(#ckc)"/>' +
+      // face
+      '<ellipse class="ck-cheek" cx="44" cy="133" rx="8" ry="5" fill="#ff8fc7" opacity=".55"/><ellipse class="ck-cheek" cx="116" cy="133" rx="8" ry="5" fill="#ff8fc7" opacity=".55"/>' +
+      '<g class="ck-eyes"><g class="ck-eye"><ellipse cx="62" cy="121" rx="9.5" ry="11" fill="#fff"/><circle class="ck-pupil" cx="63" cy="123" r="5" fill="#13213f"/><circle cx="65" cy="120" r="1.8" fill="#fff"/></g>' +
+        '<g class="ck-eye"><ellipse cx="98" cy="121" rx="9.5" ry="11" fill="#fff"/><circle class="ck-pupil" cx="99" cy="123" r="5" fill="#13213f"/><circle cx="101" cy="120" r="1.8" fill="#fff"/></g>' +
+        '<rect class="ck-lid" x="50" y="109" width="60" height="24" fill="#2a56a3"/></g>' +
+      '<g class="ck-happy" fill="none" stroke="#13213f" stroke-width="3.6" stroke-linecap="round"><path d="M53 124 Q62 112 71 124"/><path d="M89 124 Q98 112 107 124"/></g>' +
+      '<path class="ck-grin" d="M66 133 Q80 150 94 133 Q80 139 66 133 Z" fill="#3a0f24"/><path class="ck-grin" d="M73 140 Q80 145 87 140 Q80 137 73 140 Z" fill="#ff7aa8"/>' +
+      '<ellipse class="ck-o" cx="80" cy="139" rx="8" ry="9" fill="#3a0f24"/>' +
+      // top tier
+      '<rect x="38" y="62" width="84" height="40" rx="11" fill="url(#ckc)"/>' +
+      '<path d="M38 74 Q38 62 49 62 H111 Q122 62 122 74 V76 q-5 9 -9 0 q-4 11 -10 0 q-5 6 -9 0 q-6 12 -11 0 q-4 7 -9 0 q-5 10 -10 0 q-4 6 -9 0 q-4 9 -9 0 Q38 78 38 76 Z" fill="#3d6fc2"/>' +
+      '<g class="ck-spr"><rect x="50" y="86" width="6" height="2.4" rx="1.2" fill="#ff8fc7" transform="rotate(25 53 87)"/><rect x="66" y="92" width="6" height="2.4" rx="1.2" fill="#e9c77b" transform="rotate(-30 69 93)"/>' +
+        '<rect x="84" y="88" width="6" height="2.4" rx="1.2" fill="#7dffc0" transform="rotate(60 87 89)"/><rect x="101" y="93" width="6" height="2.4" rx="1.2" fill="#c9a2ff" transform="rotate(-10 104 94)"/>' +
+        '<rect x="110" y="84" width="6" height="2.4" rx="1.2" fill="#4f8cff" transform="rotate(40 113 85)"/><rect x="58" y="96" width="6" height="2.4" rx="1.2" fill="#4f8cff" transform="rotate(-50 61 97)"/></g>' +
+      // candles
+      '<g class="ck-candles">' + [58, 80, 102].map(function (x, i) {
+        return '<rect x="' + (x - 3.5) + '" y="' + (i === 1 ? 32 : 38) + '" width="7" height="' + (i === 1 ? 32 : 26) + '" rx="2" fill="url(#cks)"/>' +
+          '<line x1="' + x + '" y1="' + (i === 1 ? 32 : 38) + '" x2="' + x + '" y2="' + (i === 1 ? 27 : 33) + '" stroke="#3a2a10" stroke-width="1.4"/>' +
+          '<g class="ck-flame" style="animation-delay:-' + (i * .23) + 's"><circle cx="' + x + '" cy="' + (i === 1 ? 20 : 26) + '" r="9" fill="#ffd35c" opacity=".28"/>' +
+          '<path d="M' + x + ' ' + (i === 1 ? 8 : 14) + ' C' + (x + 6) + ' ' + (i === 1 ? 17 : 23) + ' ' + (x + 5) + ' ' + (i === 1 ? 27 : 33) + ' ' + x + ' ' + (i === 1 ? 27 : 33) +
+          ' C' + (x - 5) + ' ' + (i === 1 ? 27 : 33) + ' ' + (x - 6) + ' ' + (i === 1 ? 17 : 23) + ' ' + x + ' ' + (i === 1 ? 8 : 14) + ' Z" fill="url(#ckf)"/></g>';
+      }).join("") + '</g>' +
+    '</g></svg>';
+
+  var splash, back, front, bctx, fctx, W = 0, H = 0, DPR = 1, raf = 0, running = false, last = 0, nextRocket = 0, rate = 1;
+  var rockets = [], sparks = [], confetti = [], pendingFinale = false;
+
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+  function pick(a) { return a[(Math.random() * a.length) | 0]; }
+
+  function size() {
+    if (!splash) return;
+    var r = splash.getBoundingClientRect();
+    DPR = Math.min(2, window.devicePixelRatio || 1);
+    W = r.width; H = r.height;
+    [back, front].forEach(function (c) { c.width = Math.round(W * DPR); c.height = Math.round(H * DPR); c.style.width = W + "px"; c.style.height = H + "px"; });
+    bctx.setTransform(DPR, 0, 0, DPR, 0, 0); fctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+
+  function launchX() {
+    // on wide screens, favour the open sky either side of the card so bursts aren't hidden behind it
+    var card = splash && splash.querySelector(".sp-card");
+    if (card && W > 700 && Math.random() < .75) {
+      var r = card.getBoundingClientRect(), s = splash.getBoundingClientRect(), l = r.left - s.left, rr = r.right - s.left;
+      return Math.random() < .5 ? rnd(W * .04, Math.max(W * .06, l - 30)) : rnd(Math.min(W * .94, rr + 30), W * .96);
+    }
+    return rnd(W * .08, W * .92);
+  }
+
+  function launch(x, kind) {
+    var tx = x != null ? x : launchX();
+    rockets.push({ x: tx, y: H + 10, vx: rnd(-.6, .6), vy: -rnd(H * .0105, H * .0135) - 6, trail: [], kind: kind || pick(["peony", "peony", "ring", "willow", "crackle", "peony", "heart", "smile", "ring"]),
+      pal: pick([GOLD, BLUE, FUN, GOLD, BLUE]), fuse: W < 700 ? rnd(H * .05, H * .3) : rnd(H * .12, H * .42) });
+  }
+
+  function burst(r) {
+    var n, i, a, sp, col;
+    var add = function (vx, vy, o) {
+      sparks.push(Object.assign({ x: r.x, y: r.y, vx: vx, vy: vy, life: 1, decay: rnd(.009, .016), col: col || pick(r.pal), w: rnd(1.4, 2.4), g: .045, drag: .985, trail: [] }, o || {}));
+    };
+    switch (r.kind) {
+      case "ring":
+        n = 44; col = pick(r.pal); sp = rnd(3.6, 4.6);
+        for (i = 0; i < n; i++) { a = i / n * Math.PI * 2; add(Math.cos(a) * sp, Math.sin(a) * sp, { decay: .012 }); }
+        col = null; break;
+      case "willow":
+        n = 70;
+        for (i = 0; i < n; i++) { a = rnd(0, Math.PI * 2); sp = rnd(1, 4.2); add(Math.cos(a) * sp, Math.sin(a) * sp, { col: pick(GOLD), decay: rnd(.005, .008), g: .03, drag: .975, w: 1.6, long: 1 }); }
+        break;
+      case "crackle":
+        n = 60;
+        for (i = 0; i < n; i++) { a = rnd(0, Math.PI * 2); sp = rnd(1.5, 5); add(Math.cos(a) * sp, Math.sin(a) * sp, { col: "#ffffff", crackle: 1, decay: rnd(.012, .02) }); }
+        break;
+      case "heart":
+        n = 56; col = pick(["#ff8fc7", "#ff6fa8", "#f6dd9a"]);
+        for (i = 0; i < n; i++) {
+          a = i / n * Math.PI * 2;
+          var hx = 16 * Math.pow(Math.sin(a), 3), hy = -(13 * Math.cos(a) - 5 * Math.cos(2 * a) - 2 * Math.cos(3 * a) - Math.cos(4 * a));
+          add(hx * .26, hy * .26, { decay: .011, g: .02 });
+        }
+        col = null; break;
+      case "smile":    // a goofy smiley: face ring, two eyes and a grin
+        col = pick(["#f6dd9a", "#7dffc0", "#9cc6ff"]); sp = 4.2;
+        for (i = 0; i < 40; i++) { a = i / 40 * Math.PI * 2; add(Math.cos(a) * sp, Math.sin(a) * sp, { decay: .011, g: .02 }); }
+        [[-1.3, -1.4], [1.3, -1.4]].forEach(function (e) { for (i = 0; i < 5; i++) add(e[0] + rnd(-.15, .15), e[1] + rnd(-.15, .15), { decay: .011, g: .02 }); });
+        for (i = 0; i < 14; i++) { a = Math.PI * (.2 + .6 * i / 13); add(Math.cos(a) * 2.4, Math.sin(a) * 2.4, { decay: .011, g: .02 }); }
+        col = null; break;
+      default:     // peony
+        n = 80;
+        for (i = 0; i < n; i++) { a = rnd(0, Math.PI * 2); sp = Math.pow(Math.random(), .45) * rnd(3.4, 5.2); add(Math.cos(a) * sp, Math.sin(a) * sp); }
+    }
+    // a soft flash
+    sparks.push({ x: r.x, y: r.y, vx: 0, vy: 0, life: 1, decay: .08, flash: 1, col: pick(r.pal), g: 0, drag: 1, w: 0, trail: [] });
+  }
+
+  function confettiBurst(x, y, n, spread) {
+    for (var i = 0; i < n; i++) {
+      var a = -Math.PI / 2 + rnd(-spread, spread), sp = rnd(5, 12);
+      confetti.push({ x: x + rnd(-14, 14), y: y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, rot: rnd(0, 6.28), vr: rnd(-.3, .3),
+        w: rnd(6, 11), h: rnd(3, 6), col: pick(CONF), life: 1, ph: rnd(0, 6.28), shape: Math.random() < .2 ? "dot" : "rect" });
+    }
+  }
+
+  function frame(t) {
+    raf = 0;
+    if (!running) return;
+    var dt = Math.min(2.2, (t - (last || t)) / 16.67); last = t;
+    if (t > nextRocket) { launch(); nextRocket = t + rnd(520, 1300) / rate; }
+
+    bctx.clearRect(0, 0, W, H); fctx.clearRect(0, 0, W, H);
+    // phones: the card fills the screen, so draw the fireworks over it, softened, instead of hiding them behind it
+    var over = W < 700, k = over ? .62 : 1, c0 = bctx;
+    bctx = over ? fctx : c0;
+    bctx.globalCompositeOperation = "lighter";
+    bctx.lineCap = "round";
+    for (var i = rockets.length - 1; i >= 0; i--) {
+      var r = rockets[i];
+      r.trail.push([r.x, r.y]); if (r.trail.length > 8) r.trail.shift();
+      r.x += r.vx * dt; r.y += r.vy * dt; r.vy += .12 * dt;
+      bctx.strokeStyle = "rgba(255, 230, 170, " + (.75 * k) + ")"; bctx.lineWidth = 2;
+      bctx.beginPath(); bctx.moveTo(r.trail[0][0], r.trail[0][1]); bctx.lineTo(r.x, r.y); bctx.stroke();
+      if (r.vy >= -1.2 || r.y < r.fuse) { burst(r); rockets.splice(i, 1); }
+    }
+    for (i = sparks.length - 1; i >= 0; i--) {
+      var p = sparks[i];
+      if (p.flash) {
+        var g = bctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, 70);
+        g.addColorStop(0, "rgba(255,248,220," + (.35 * p.life * k) + ")"); g.addColorStop(1, "rgba(255,248,220,0)");
+        bctx.fillStyle = g; bctx.beginPath(); bctx.arc(p.x, p.y, 70, 0, 6.29); bctx.fill();
+        p.life -= p.decay * dt; if (p.life <= 0) sparks.splice(i, 1);
+        continue;
+      }
+      p.trail.push([p.x, p.y]); if (p.trail.length > (p.long ? 10 : 5)) p.trail.shift();
+      p.vx *= Math.pow(p.drag, dt); p.vy = p.vy * Math.pow(p.drag, dt) + p.g * dt;
+      p.x += p.vx * dt; p.y += p.vy * dt; p.life -= p.decay * dt;
+      if (p.life <= 0) { sparks.splice(i, 1); continue; }
+      var al = p.crackle ? (Math.random() < .5 ? p.life : p.life * .15) : p.life;
+      bctx.globalAlpha = Math.max(0, al * k);
+      bctx.strokeStyle = p.col; bctx.lineWidth = p.w;
+      bctx.beginPath(); bctx.moveTo(p.trail[0][0], p.trail[0][1]); bctx.lineTo(p.x, p.y); bctx.stroke();
+    }
+    bctx.globalAlpha = 1; bctx.globalCompositeOperation = "source-over";
+    bctx = c0;
+
+    for (i = confetti.length - 1; i >= 0; i--) {
+      var c = confetti[i];
+      c.vx *= Math.pow(.985, dt); c.vy = c.vy * Math.pow(.985, dt) + .22 * dt;
+      c.ph += .12 * dt; c.x += (c.vx + Math.sin(c.ph) * .8) * dt; c.y += c.vy * dt; c.rot += c.vr * dt;
+      if (c.vy > 2.2) c.vy = 2.2 + (c.vy - 2.2) * .9;    // flutter down slowly
+      if (c.y > H * .55) c.life -= .012 * dt;
+      if (c.life <= 0 || c.y > H + 20) { confetti.splice(i, 1); continue; }
+      fctx.save(); fctx.globalAlpha = Math.min(1, c.life * 1.5); fctx.translate(c.x, c.y); fctx.rotate(c.rot);
+      fctx.fillStyle = c.col;
+      if (c.shape === "dot") { fctx.beginPath(); fctx.arc(0, 0, c.h * .7, 0, 6.29); fctx.fill(); }
+      else { fctx.scale(1, Math.abs(Math.cos(c.ph))); fctx.fillRect(-c.w / 2, -c.h / 2, c.w, c.h); }
+      fctx.restore();
+    }
+    raf = requestAnimationFrame(frame);
+  }
+
+  var QUIPS = ["Make a wish: no login queue.", "I'm a cake, not a raid boss.", "Blow out the candles, light the hearthstones.",
+    "Rested XP is the best present.", "For the Alliance! And for cake.", "One slice per Hogger kill.", "Candles lit. Bags equipped by hand."];
+  var cakeBtn, bubble, popT = 0, quipT = 0, qi = 0;
+
+  var FX = {
+    mount: function (el) {
+      splash = el;
+      back = document.createElement("canvas"); back.className = "sp-fx sp-back"; back.setAttribute("aria-hidden", "true");
+      front = document.createElement("canvas"); front.className = "sp-fx sp-front"; front.setAttribute("aria-hidden", "true");
+      el.insertBefore(back, el.querySelector(".sp-banner"));
+      el.appendChild(front);
+      bctx = back.getContext("2d"); fctx = front.getContext("2d");
+      var party = el.querySelector('[data-sp="party"]');
+      if (party) {
+        party.insertAdjacentHTML("afterbegin", '<button type="button" class="sp-cake" data-sp="cake" aria-label="Pop the cake">' + CAKE + '<span class="ck-shadow"></span><span class="ck-popword" aria-hidden="true">POP!</span></button>');
+        cakeBtn = party.querySelector(".sp-cake"); bubble = party.querySelector('[data-sp="sub"]');
+        cakeBtn.addEventListener("click", function (e) { e.stopPropagation(); FX.pop(true); });
+      }
+      window.addEventListener("resize", function () { if (running) size(); });
+      document.addEventListener("visibilitychange", function () { if (document.hidden) FX.stop(true); else if (splash && !splash.hidden && splash.classList.contains("in")) FX.start(); });
+    },
+    start: function () {
+      if (REDUCED || !splash || running) return;
+      running = true; last = 0; size(); nextRocket = 0;
+      raf = requestAnimationFrame(frame);
+      if (pendingFinale) { pendingFinale = false; setTimeout(FX.finale, 350); }
+    },
+    stop: function (keep) {
+      running = false; if (raf) cancelAnimationFrame(raf); raf = 0;
+      if (!keep) { rockets = []; sparks = []; confetti = []; if (bctx) bctx.clearRect(0, 0, W, H); if (fctx) fctx.clearRect(0, 0, W, H); }
+    },
+    pop: function (byHand) {
+      if (!cakeBtn) return;
+      var now = Date.now(); if (now - popT < 700) return; popT = now;
+      cakeBtn.classList.remove("pop"); void cakeBtn.offsetWidth; cakeBtn.classList.add("pop");
+      setTimeout(function () { cakeBtn.classList.remove("pop"); }, 1100);
+      if (!REDUCED && running) {
+        var r = cakeBtn.getBoundingClientRect(), s = splash.getBoundingClientRect();
+        confettiBurst(r.left - s.left + r.width / 2, r.top - s.top + r.height * .25, byHand ? 110 : 80, .75);
+        launch(r.left - s.left + r.width / 2 + rnd(-60, 60), pick(["heart", "smile", "peony"]));
+      }
+      if (bubble) {
+        bubble.dataset.quip = "1"; bubble.textContent = QUIPS[qi++ % QUIPS.length];
+        clearTimeout(quipT); quipT = setTimeout(function () { delete bubble.dataset.quip; if (FX.onQuipEnd) FX.onQuipEnd(); }, 3800);
+      }
+    },
+    salvo: function (n) { if (!running) return; for (var i = 0; i < n; i++) (function (k) { setTimeout(function () { launch(W * (.15 + .7 * k / Math.max(1, n - 1))); }, k * 160); })(i); },
+    finale: function () {
+      if (!running) { pendingFinale = true; return; }
+      rate = 3.2; FX.salvo(8);
+      if (cakeBtn) cakeBtn.classList.add("party");
+      if (running) confettiBurst(W / 2, H * .9, 220, 1.1);
+    },
+    quipping: function () { return !!(bubble && bubble.dataset.quip); }
+  };
+  window.WFG_FX = FX;
+})();
+
 /* Launch splash: a full-screen Alliance-blue countdown to WoW: Forever on the Oceanic servers.
    Shows once per visit until 36 hours after launch; the hero chip reopens it. */
 (function () {
@@ -2448,12 +2756,13 @@ html.sp-open { overflow: hidden; }
             return '<div class="sp-unit"><b data-sp="' + k + '">00</b><span>' + ["days", "hours", "minutes", "seconds"][i] + "</span></div>";
           }).join('<div class="sp-colon" aria-hidden="true">:</div>') +
         '</div>' +
-        '<p class="sp-sub" data-sp="sub"></p>' +
+        '<div class="sp-party" data-sp="party"><p class="sp-sub" data-sp="sub"></p></div>' +
         '<div class="sp-btns"><button type="button" class="sp-go" data-sp="enter">Enter the guide</button>' +
         '<a class="sp-alt" href="#launch" data-sp="launch">Launch-day checklist</a></div>' +
         '<p class="sp-local" data-sp="local"></p>' +
       '</div>';
     document.body.appendChild(el);
+    if (window.WFG_FX) { WFG_FX.mount(el); WFG_FX.onQuipEnd = function () { status(); }; }
     el.addEventListener("click", function (e) {
       if (e.target.closest('[data-sp="enter"]')) { close(); return; }
       if (e.target.closest('[data-sp="launch"]')) { close(true); return; }
@@ -2475,12 +2784,25 @@ html.sp-open { overflow: hidden; }
     el.querySelector('[data-sp="when"]').innerHTML = "Servers open <b>" + aedt.replace(" at ", ", ") + " AEDT</b>";
   }
 
+  var wasLive = false, lastSec = -1;
+  function fx() { return window.WFG_FX || { pop: function () {}, salvo: function () {}, finale: function () {}, quipping: function () { return false; }, start: function () {}, stop: function () {} }; }
+  function status() {
+    var ms = LAUNCH - Date.now(), sub = el.querySelector('[data-sp="sub"]');
+    if (!sub || fx().quipping()) return;
+    var hrs = Math.ceil(ms / 3600000);
+    sub.textContent = ms <= 0 ? "It's live! Oceanic servers opened at 10:00 am AEDT. See you in Azeroth." :
+      hrs <= 1 ? "Final hour. Log in, sit in the queue, keep your character name ready." :
+      hrs <= 12 ? "Install the client, set up your addons, pick your character here. The gates open soon." :
+      "Rest up. The gates open soon.";
+  }
+
   function tick() {
     var ms = LAUNCH - Date.now();
     if (ms <= 0) {
       el.classList.add("live");
       el.querySelector('[data-sp="clock"]').innerHTML = '<div class="sp-live">Forever is live</div>';
-      el.querySelector('[data-sp="sub"]').textContent = "Oceanic servers opened at 10:00 am AEDT. See you in Azeroth.";
+      status();
+      if (!wasLive) { wasLive = true; fx().finale(); }
       clearInterval(timer); timer = null;
       return;
     }
@@ -2491,11 +2813,12 @@ html.sp-open { overflow: hidden; }
       if (b.textContent !== t) { b.textContent = t; b.classList.remove("flip"); void b.offsetWidth; b.classList.add("flip"); }
     });
     el.classList.toggle("nodays", v.d === 0);
-    var hrs = Math.ceil(ms / 3600000);
-    el.querySelector('[data-sp="sub"]').textContent =
-      hrs <= 1 ? "Final hour. Log in, sit in the queue, keep your character name ready." :
-      hrs <= 12 ? "Install the client, set up your addons, pick your character here. The gates open soon." :
-      "Rest up. The gates open soon.";
+    status();
+    if (lastSec !== -1 && v.s !== lastSec) {
+      if (v.s % 10 === 0) fx().pop();
+      if (v.s === 0) fx().salvo(v.m === 0 ? 7 : 3);
+    }
+    lastSec = v.s;
   }
 
   function open() {
@@ -2503,7 +2826,7 @@ html.sp-open { overflow: hidden; }
     lastFocus = document.activeElement;
     el.hidden = false;
     document.documentElement.classList.add("sp-open");
-    requestAnimationFrame(function () { el.classList.add("in"); });
+    requestAnimationFrame(function () { el.classList.add("in"); fx().start(); });
     tick();
     if (!timer && LAUNCH > Date.now()) timer = setInterval(tick, 1000);
     var go = el.querySelector('[data-sp="enter"]'); if (go) go.focus({ preventScroll: true });
@@ -2514,6 +2837,7 @@ html.sp-open { overflow: hidden; }
     el.classList.remove("in");
     document.documentElement.classList.remove("sp-open");
     if (timer) { clearInterval(timer); timer = null; }
+    fx().stop();
     setTimeout(function () { el.hidden = true; }, 350);
     if (!toLaunch && lastFocus && lastFocus.focus) try { lastFocus.focus({ preventScroll: true }); } catch (e) {}
   }
