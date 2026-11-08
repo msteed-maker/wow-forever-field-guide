@@ -910,6 +910,79 @@ ul.tight { margin: 6px 0; padding-left: 18px; } ul.tight li { margin: 3px 0; }
 @media (max-width: 900px) { .wjump { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .wjump { grid-template-columns: 1fr; } }
 
+/* ---------- Armory tab ---------- */
+.arm-hero { position: relative; overflow: hidden; display: grid; grid-template-columns: 170px 1fr; gap: 28px; align-items: center;
+  margin: 8px 0 34px; padding: 34px 36px; border-radius: 20px; color: #f4ecd8;
+  background: radial-gradient(120% 140% at 0% 0%, #2a4f94 0%, #16305f 48%, #0d1d3c 100%);
+  border: 1px solid #c9a24a; box-shadow: 0 0 0 4px rgba(201,162,74,.16), 0 18px 40px -18px rgba(13,29,60,.6); }
+.arm-hero::before { content: ""; position: absolute; inset: 10px; border: 1px solid rgba(232,200,120,.35); border-radius: 14px; pointer-events: none; }
+.arm-glow { position: absolute; left: -60px; top: -80px; width: 360px; height: 360px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(242,205,120,.35), rgba(242,205,120,0) 65%); pointer-events: none; }
+.arm-crest { position: relative; display: grid; place-items: center; }
+.arm-crest img { width: 150px; height: auto; filter: drop-shadow(0 8px 18px rgba(0,0,0,.45)); animation: arm-float 6s ease-in-out infinite; }
+@keyframes arm-float { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
+.arm-txt { position: relative; }
+.arm-kick { font: 700 12px/1 var(--body); letter-spacing: .16em; text-transform: uppercase; color: #e8c878; }
+.arm-hero h3 { font: 800 clamp(26px, 3.4vw, 38px)/1.08 var(--display); margin: 10px 0 10px; color: #fff; letter-spacing: -.01em; }
+.arm-hero p { margin: 0 0 18px; max-width: 58ch; color: #dfe6f3; font-size: 16px; line-height: 1.55; }
+.arm-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+.arm-sub { font-size: 13px; color: #b9c6de; }
+.arm-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; text-decoration: none;
+  font: 700 15px/1 var(--body); color: #1d1608; background: linear-gradient(180deg, #f6dc94, #d6a84a); border: 1px solid #a87a26;
+  box-shadow: 0 2px 0 #8a6420, 0 8px 18px -8px rgba(138,100,32,.8); transition: transform .12s ease, box-shadow .12s ease; }
+.arm-btn:hover { transform: translateY(-1px); box-shadow: 0 3px 0 #8a6420, 0 12px 22px -10px rgba(138,100,32,.9); }
+.arm-btn:active { transform: translateY(1px); box-shadow: 0 1px 0 #8a6420; }
+.arm-block { margin-top: 10px; }
+.arm-look { margin: 6px 0 34px; padding: 22px 24px; border-radius: 16px; background: linear-gradient(180deg, #fbf6e9, #f3e9cf); border: 1px solid #e3cf9c; }
+.arm-fields { display: grid; grid-template-columns: 1fr 1fr 1fr .8fr; gap: 12px; }
+.arm-fields label { display: grid; gap: 6px; font: 600 12px/1 var(--body); letter-spacing: .06em; text-transform: uppercase; color: var(--gold-deep); }
+.arm-fields input, .arm-fields select { font: 500 16px/1.2 var(--body); padding: 11px 12px; border-radius: 10px; border: 1px solid #d9c38e; background: #fff; color: var(--ink); min-width: 0; }
+.arm-fields input:focus, .arm-fields select:focus { outline: 2px solid #c9a24a; outline-offset: 1px; }
+.arm-go { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-top: 16px; }
+.arm-plate { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; min-height: 26px; }
+.arm-pn { font: 800 22px/1.1 var(--display); color: var(--lapis-deep); }
+.arm-pr { font-size: 14px; color: #6b6150; }
+.arm-msg { margin: 10px 0 0; min-height: 1.2em; font-size: 14px; color: var(--moss); }
+.arm-crew { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; margin: 6px 0 34px; }
+.arm-card { position: relative; display: grid; grid-template-columns: 64px 1fr; border-radius: 14px; overflow: hidden; background: #fff;
+  border: 1px solid var(--line); box-shadow: 0 6px 18px -12px rgba(20,43,85,.5); transition: transform .15s ease, box-shadow .15s ease; }
+.arm-card:hover { transform: translateY(-2px); box-shadow: 0 12px 26px -14px rgba(20,43,85,.55); }
+.arm-banner { position: relative; background: linear-gradient(180deg, #1f3f7a, #142b55); display: grid; place-items: start center; padding-top: 14px; }
+.arm-banner::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 18px; background: linear-gradient(135deg, transparent 50%, #fff 50%), linear-gradient(225deg, transparent 50%, #fff 50%);
+  background-size: 50% 100%; background-position: left, right; background-repeat: no-repeat; }
+.arm-banner span { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; font: 800 15px/1 var(--display); color: #142b55;
+  background: var(--cc); box-shadow: 0 0 0 2px #e8c878, 0 0 14px color-mix(in srgb, var(--cc) 60%, transparent); }
+.arm-body { padding: 14px 16px 14px 14px; border-top: 4px solid var(--cb, var(--cc)); }
+.arm-body h4 { margin: 0 0 6px; font: 800 18px/1.15 var(--display); color: var(--ink); }
+.arm-body h4 em { font: 600 11px/1 var(--body); font-style: normal; text-transform: uppercase; letter-spacing: .08em; color: var(--gold-deep); background: var(--gold-soft); padding: 3px 6px; border-radius: 6px; vertical-align: middle; }
+.arm-meta { display: flex; gap: 10px; font-size: 14px; color: #5b6070; margin-bottom: 10px; }
+.arm-cls { font-weight: 700; color: color-mix(in srgb, var(--cb, var(--cc)) 55%, #1d2130); }
+.arm-warn { margin: 0 0 10px; font-size: 13px; color: #8a6420; }
+.arm-link { font: 700 14px/1 var(--body); color: var(--lapis); text-decoration: none; }
+.arm-link:hover { text-decoration: underline; }
+.arm-empty { grid-column: 1 / -1; display: flex; gap: 16px; align-items: center; padding: 20px 22px; border-radius: 14px; border: 1px dashed #d9c38e; background: #fffcf3; }
+.arm-empty p { margin: 0; }
+.arm-shows { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 6px 0 24px; }
+.arm-tile { padding: 18px; border-radius: 14px; background: var(--lapis-soft); border: 1px solid #d3ddef; }
+.arm-tile svg { color: var(--lapis); }
+.arm-tile h4 { margin: 8px 0 6px; font: 800 17px/1.2 var(--display); color: var(--lapis-deep); }
+.arm-tile p { margin: 0; font-size: 14.5px; line-height: 1.5; color: #3d4356; }
+.arm-toast { position: fixed; left: 50%; bottom: 84px; transform: translateX(-50%); z-index: 60; max-width: min(92vw, 520px); padding: 12px 16px; border-radius: 12px;
+  background: #142b55; color: #f4ecd8; border: 1px solid #c9a24a; font-size: 14px; box-shadow: 0 12px 30px -10px rgba(0,0,0,.5); }
+@media (max-width: 900px) {
+  .arm-fields { grid-template-columns: 1fr 1fr; }
+  .arm-shows { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .arm-hero { grid-template-columns: 1fr; padding: 26px 22px; gap: 10px; text-align: left; }
+  .arm-crest img { width: 96px; }
+  .arm-crest { justify-content: start; }
+  .arm-shows { grid-template-columns: 1fr; }
+  .arm-go { flex-direction: column; align-items: stretch; }
+  .arm-go .arm-btn { justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) { .arm-crest img { animation: none; } .arm-card, .arm-btn { transition: none; } }
+
 /* Launch splash: Alliance blue and gold */
 html.sp-open { overflow: hidden; }
 .splash { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 20px; opacity: 0; transition: opacity .35s ease; color: #fff; overflow: hidden; }
@@ -1073,8 +1146,8 @@ html.sp-open { overflow: hidden; }
 </head>
 <body>
 <div class="shell">
-  <aside class="rail"><div class="brand"><img class="brand-mark" src="img/emblem-96.png" width="44" height="44" alt=""><span>Alliance 1–30<br><small>Forever Field Guide</small></span></div><nav><div data-navview="guide"><div class="grp">Start here</div><a class="" href="#you">Your character</a><a class="" href="#launch">Launch day</a><a class="" href="#forever">What Forever changed</a><a class="" href="#overview">The 1–30 map</a><a class="sub" href="#xp-mobs">What to kill</a><a class="" href="#rest">Rest and camping</a><div class="grp">Human</div><a class="" href="#elwynn"><span class="dot" style="background:var(--z-elwynn)"></span>Elwynn Forest 1–10</a><a class="" href="#westfall"><span class="dot" style="background:var(--z-westfall)"></span>Westfall 10–17</a><a class="" href="#redridge"><span class="dot" style="background:var(--z-redridge)"></span>Redridge 17–23</a><a class="" href="#duskwood"><span class="dot" style="background:var(--z-duskwood)"></span>Duskwood 22–30</a><div class="grp">Dwarf · Gnome</div><a class="" href="#dunmorogh"><span class="dot" style="background:var(--z-dunmorogh)"></span>Dun Morogh 1–12</a><a class="" href="#lochmodan"><span class="dot" style="background:var(--z-lochmodan)"></span>Loch Modan 10–19</a><a class="" href="#wetlands"><span class="dot" style="background:var(--z-wetlands)"></span>Wetlands 20–30</a><div class="grp">Night Elf</div><a class="" href="#teldrassil"><span class="dot" style="background:var(--z-teldrassil)"></span>Teldrassil 1–12</a><a class="" href="#darkshore"><span class="dot" style="background:var(--z-darkshore)"></span>Darkshore 10–19</a><a class="" href="#ashenvale"><span class="dot" style="background:var(--z-ashenvale)"></span>Ashenvale 19–30</a><a class="" href="#stonetalon"><span class="dot" style="background:var(--z-stonetalon)"></span>Stonetalon 16–26</a><div class="grp">Skyborne</div><a class="" href="#zephras"><span class="dot" style="background:var(--z-zephras)"></span>Zephras Isle 1–12</a><a class="sub" href="#skyborne-exit">Leaving the isle</a><div class="grp">Levels 30–40</div><a class="" href="#l30">The route to 40</a><a class="" href="#hillsbrad">Hillsbrad 30–34</a><a class="" href="#arathi">Arathi 30–40</a><a class="" href="#stranglethorn">Stranglethorn 30–45</a><a class="" href="#alterac">Alterac 34–40</a><a class="" href="#desolace">Desolace 30–39</a><a class="" href="#dustwallow">Dustwallow Marsh 36–43</a><a class="sub" href="#riverglades">Riverglades 36–44</a><a class="sub" href="#swamp">Swamp of Sorrows 36–43</a><a class="sub" href="#badlands">Badlands 36–45</a><a class="sub" href="#thousandneedles">Thousand Needles 30–35</a><div class="grp">Reference</div><a class="" href="#timeline">Level checklist</a><a class="" href="#sources">Sources</a></div><div data-navview="dungeons" hidden><div class="grp">Dungeon guide</div><a class="" href="#dungeons">How to run them</a><a class="" href="#d-hallofthanes">Hall of Thanes 13–18</a><a class="" href="#d-deadmines">The Deadmines 17–21</a><a class="" href="#d-stockade">The Stockade 22–26</a><a class="" href="#d-bfd">Blackfathom Deeps 24–26</a><a class="" href="#d-excavation">Excavation Site 26–28</a><a class="" href="#d-gnomeregan">Gnomeregan 29+</a><a class="" href="#party">Party board</a></div><div data-navview="professions" hidden><div class="grp">Profession guide</div><a class="" href="#professions">Overview</a><a class="" href="#p-pairs">Which pair</a><a class="" href="#p-camping">Camping objects</a><a class="" href="#p-timing">When to do what</a><div class="grp">Gathering</div><a class="" href="#prof-mining"><span class="dot" style="background:#8c6b4e"></span>Mining</a><a class="" href="#prof-herb"><span class="dot" style="background:#4f7a3a"></span>Herbalism</a><a class="" href="#prof-skin"><span class="dot" style="background:#b5583b"></span>Skinning</a><div class="grp">Crafting</div><a class="" href="#prof-lw"><span class="dot" style="background:#a0612f"></span>Leatherworking</a><a class="" href="#prof-tail"><span class="dot" style="background:#5a6f8f"></span>Tailoring</a><a class="" href="#prof-alch"><span class="dot" style="background:#7a5aa6"></span>Alchemy</a><a class="" href="#prof-bs"><span class="dot" style="background:#4b5063"></span>Blacksmithing</a><a class="" href="#prof-eng"><span class="dot" style="background:#c0943a"></span>Engineering</a><a class="" href="#prof-ench"><span class="dot" style="background:#2e9aa8"></span>Enchanting</a><div class="grp">Secondary</div><a class="" href="#prof-fa"><span class="dot" style="background:#3f7d72"></span>First Aid</a><a class="" href="#prof-cook"><span class="dot" style="background:#b24a2f"></span>Cooking</a><a class="" href="#prof-fish"><span class="dot" style="background:#4c84b5"></span>Fishing</a><div class="grp">Merchant&#x27;s Favor</div><a class="" href="#crates">Waylaid Crates planner</a></div><div data-navview="weapons" hidden><div class="grp">Weapon atlas</div><a class="" href="#weapons">Overview</a><a class="" href="#w-casters"><span class="dot" style="background:#7a5aa6"></span>Casters</a><a class="" href="#w-melee"><span class="dot" style="background:#a0612f"></span>Two-handed melee</a><a class="" href="#w-hunter"><span class="dot" style="background:#3f7d62"></span>Hunter</a><a class="" href="#w-druid"><span class="dot" style="background:#c0621a"></span>Druid</a><a class="" href="#w-planner">Quest planner</a><a class="" href="#w-sources">Sources</a><div class="grp">Armour atlas</div><a class="" href="#armour">Armour by slot</a></div><div data-navview="ah" hidden><div class="grp">Auction House</div><a class="" href="#ah">Status</a><a class="" href="#ah-pulse">Market pulse</a><a class="" href="#ah-week">This week</a><a class="" href="#ah-farm">What to farm</a><a class="" href="#ah-buy">Good value to buy</a><a class="" href="#ah-calc">Profession cost</a><a class="" href="#ah-list">Shopping list</a><a class="" href="#ah-alerts">Price alerts</a><a class="" href="#ah-watch">Watchlist</a><a class="" href="#ah-method">How it works</a></div><div data-navview="addons" hidden><div class="grp">Addons</div><a class="" href="#addons">How they work</a><a class="" href="#ad-first">Tier 1 · Install first</a><a class="" href="#ad-forever">Tier 2 · Forever systems</a><a class="" href="#ad-dungeons">Tier 3 · Dungeons</a><a class="" href="#ad-ui">Tier 4 · Interface</a><a class="" href="#ad-skip">Skip or replace</a><a class="" href="#ad-setups">Setups by player</a><a class="" href="#ad-sources">Sources</a></div></nav></aside>
-  <main id="top"><nav class="tabs wide" aria-label="Sections"><a href="#top" data-tab="guide" aria-current="page">Levelling guide</a><a href="#dungeons" data-tab="dungeons">Dungeons</a><a href="#professions" data-tab="professions">Professions</a><a href="#weapons" data-tab="weapons">Weapons &amp; armour</a><a href="#ah" data-tab="ah">Auction House</a><a href="#addons" data-tab="addons">Addons</a></nav>
+  <aside class="rail"><div class="brand"><img class="brand-mark" src="img/emblem-96.png" width="44" height="44" alt=""><span>Alliance 1–30<br><small>Forever Field Guide</small></span></div><nav><div data-navview="guide"><div class="grp">Start here</div><a class="" href="#you">Your character</a><a class="" href="#launch">Launch day</a><a class="" href="#forever">What Forever changed</a><a class="" href="#overview">The 1–30 map</a><a class="sub" href="#xp-mobs">What to kill</a><a class="" href="#rest">Rest and camping</a><div class="grp">Human</div><a class="" href="#elwynn"><span class="dot" style="background:var(--z-elwynn)"></span>Elwynn Forest 1–10</a><a class="" href="#westfall"><span class="dot" style="background:var(--z-westfall)"></span>Westfall 10–17</a><a class="" href="#redridge"><span class="dot" style="background:var(--z-redridge)"></span>Redridge 17–23</a><a class="" href="#duskwood"><span class="dot" style="background:var(--z-duskwood)"></span>Duskwood 22–30</a><div class="grp">Dwarf · Gnome</div><a class="" href="#dunmorogh"><span class="dot" style="background:var(--z-dunmorogh)"></span>Dun Morogh 1–12</a><a class="" href="#lochmodan"><span class="dot" style="background:var(--z-lochmodan)"></span>Loch Modan 10–19</a><a class="" href="#wetlands"><span class="dot" style="background:var(--z-wetlands)"></span>Wetlands 20–30</a><div class="grp">Night Elf</div><a class="" href="#teldrassil"><span class="dot" style="background:var(--z-teldrassil)"></span>Teldrassil 1–12</a><a class="" href="#darkshore"><span class="dot" style="background:var(--z-darkshore)"></span>Darkshore 10–19</a><a class="" href="#ashenvale"><span class="dot" style="background:var(--z-ashenvale)"></span>Ashenvale 19–30</a><a class="" href="#stonetalon"><span class="dot" style="background:var(--z-stonetalon)"></span>Stonetalon 16–26</a><div class="grp">Skyborne</div><a class="" href="#zephras"><span class="dot" style="background:var(--z-zephras)"></span>Zephras Isle 1–12</a><a class="sub" href="#skyborne-exit">Leaving the isle</a><div class="grp">Levels 30–40</div><a class="" href="#l30">The route to 40</a><a class="" href="#hillsbrad">Hillsbrad 30–34</a><a class="" href="#arathi">Arathi 30–40</a><a class="" href="#stranglethorn">Stranglethorn 30–45</a><a class="" href="#alterac">Alterac 34–40</a><a class="" href="#desolace">Desolace 30–39</a><a class="" href="#dustwallow">Dustwallow Marsh 36–43</a><a class="sub" href="#riverglades">Riverglades 36–44</a><a class="sub" href="#swamp">Swamp of Sorrows 36–43</a><a class="sub" href="#badlands">Badlands 36–45</a><a class="sub" href="#thousandneedles">Thousand Needles 30–35</a><div class="grp">Reference</div><a class="" href="#timeline">Level checklist</a><a class="" href="#sources">Sources</a></div><div data-navview="dungeons" hidden><div class="grp">Dungeon guide</div><a class="" href="#dungeons">How to run them</a><a class="" href="#d-hallofthanes">Hall of Thanes 13–18</a><a class="" href="#d-deadmines">The Deadmines 17–21</a><a class="" href="#d-stockade">The Stockade 22–26</a><a class="" href="#d-bfd">Blackfathom Deeps 24–26</a><a class="" href="#d-excavation">Excavation Site 26–28</a><a class="" href="#d-gnomeregan">Gnomeregan 29+</a><a class="" href="#party">Party board</a></div><div data-navview="professions" hidden><div class="grp">Profession guide</div><a class="" href="#professions">Overview</a><a class="" href="#p-pairs">Which pair</a><a class="" href="#p-camping">Camping objects</a><a class="" href="#p-timing">When to do what</a><div class="grp">Gathering</div><a class="" href="#prof-mining"><span class="dot" style="background:#8c6b4e"></span>Mining</a><a class="" href="#prof-herb"><span class="dot" style="background:#4f7a3a"></span>Herbalism</a><a class="" href="#prof-skin"><span class="dot" style="background:#b5583b"></span>Skinning</a><div class="grp">Crafting</div><a class="" href="#prof-lw"><span class="dot" style="background:#a0612f"></span>Leatherworking</a><a class="" href="#prof-tail"><span class="dot" style="background:#5a6f8f"></span>Tailoring</a><a class="" href="#prof-alch"><span class="dot" style="background:#7a5aa6"></span>Alchemy</a><a class="" href="#prof-bs"><span class="dot" style="background:#4b5063"></span>Blacksmithing</a><a class="" href="#prof-eng"><span class="dot" style="background:#c0943a"></span>Engineering</a><a class="" href="#prof-ench"><span class="dot" style="background:#2e9aa8"></span>Enchanting</a><div class="grp">Secondary</div><a class="" href="#prof-fa"><span class="dot" style="background:#3f7d72"></span>First Aid</a><a class="" href="#prof-cook"><span class="dot" style="background:#b24a2f"></span>Cooking</a><a class="" href="#prof-fish"><span class="dot" style="background:#4c84b5"></span>Fishing</a><div class="grp">Merchant&#x27;s Favor</div><a class="" href="#crates">Waylaid Crates planner</a></div><div data-navview="weapons" hidden><div class="grp">Weapon atlas</div><a class="" href="#weapons">Overview</a><a class="" href="#w-casters"><span class="dot" style="background:#7a5aa6"></span>Casters</a><a class="" href="#w-melee"><span class="dot" style="background:#a0612f"></span>Two-handed melee</a><a class="" href="#w-hunter"><span class="dot" style="background:#3f7d62"></span>Hunter</a><a class="" href="#w-druid"><span class="dot" style="background:#c0621a"></span>Druid</a><a class="" href="#w-planner">Quest planner</a><a class="" href="#w-sources">Sources</a><div class="grp">Armour atlas</div><a class="" href="#armour">Armour by slot</a></div><div data-navview="ah" hidden><div class="grp">Auction House</div><a class="" href="#ah">Status</a><a class="" href="#ah-pulse">Market pulse</a><a class="" href="#ah-week">This week</a><a class="" href="#ah-farm">What to farm</a><a class="" href="#ah-buy">Good value to buy</a><a class="" href="#ah-calc">Profession cost</a><a class="" href="#ah-list">Shopping list</a><a class="" href="#ah-alerts">Price alerts</a><a class="" href="#ah-watch">Watchlist</a><a class="" href="#ah-method">How it works</a></div><div data-navview="addons" hidden><div class="grp">Addons</div><a class="" href="#addons">How they work</a><a class="" href="#ad-first">Tier 1 · Install first</a><a class="" href="#ad-forever">Tier 2 · Forever systems</a><a class="" href="#ad-dungeons">Tier 3 · Dungeons</a><a class="" href="#ad-ui">Tier 4 · Interface</a><a class="" href="#ad-skip">Skip or replace</a><a class="" href="#ad-setups">Setups by player</a><a class="" href="#ad-sources">Sources</a></div><div data-navview="armory" hidden><div class="grp">Armory</div><a class="" href="#armory">The Forever armory</a><a class="" href="#arm-lookup">Look up a hero</a><a class="" href="#arm-crew">Your crew</a><a class="" href="#arm-shows">What it shows</a></div></nav></aside>
+  <main id="top"><nav class="tabs wide" aria-label="Sections"><a href="#top" data-tab="guide" aria-current="page">Levelling guide</a><a href="#dungeons" data-tab="dungeons">Dungeons</a><a href="#professions" data-tab="professions">Professions</a><a href="#weapons" data-tab="weapons">Weapons &amp; armour</a><a href="#ah" data-tab="ah">Auction House</a><a href="#addons" data-tab="addons">Addons</a><a href="#armory" data-tab="armory">Armory</a></nav>
   <div class="view" data-view="guide"><header class="hero band wide"><div class="art"><img src="img/hero.jpg" alt="An explorer&#x27;s desk at dusk: a hand-drawn map with a floating island, a brass compass, a lantern and a copper pickaxe" loading="eager" decoding="async"></div><div class="txt">
       <div class="eyebrow">World of Warcraft: Forever · Alliance Field Guide</div>
       <h1>Alliance 1–30 Field Guide</h1>
@@ -1530,6 +1603,55 @@ html.sp-open { overflow: hidden; }
   </ul>
   <p class="small">Only free addons are listed; nothing here is sponsored. Version numbers are the newest seen by any of the trackers on the date given.</p>
 </section>
+</section><div class="foot">Compiled by Claude · Edition 09 Nov 2026. Sources are listed in the Levelling guide tab.</div></div><div class="view" data-view="armory" hidden><section class="chapter tabchapter" id="armory"><div class="read"><div class="kicker">Armory</div><h2>Character armory</h2><p>Look up your character and your mates on the WoW Forever armory: gear, talents, gear score and a 3D model.</p></div>
+<div class="arm-hero wide" id="arm-open">
+  <div class="arm-glow" aria-hidden="true"></div>
+  <div class="arm-crest" aria-hidden="true"><img src="img/emblem-512.png" alt="" width="132" height="132"></div>
+  <div class="arm-txt">
+    <div class="arm-kick">armorywowforever.com</div>
+    <h3>Your heroes, on the Forever armory</h3>
+    <p>Gear, talents, gear score and a 3D model for any Forever character, read from Blizzard's own character data. It covers the Americas and Europe megaservers; Oceanic characters should show under the Americas.</p>
+    <div class="arm-cta">
+      <a class="arm-btn" href="https://armorywowforever.com/" target="_blank" rel="noopener">Open the armory <span aria-hidden="true">↗</span></a>
+      <span class="arm-sub">Opens in a new tab</span>
+    </div>
+  </div>
+</div>
+
+<section class="read arm-block" id="arm-lookup">
+  <div class="kicker">Look up a hero</div><h3>Find a character</h3>
+  <p>Forever names have a first and a last name, and the armory searches by both. Fill them in here, then open the armory: the name is copied, so you only have to paste it into the armory's search.</p>
+</section>
+<div class="arm-look wide" id="arm-look">
+  <div class="arm-fields">
+    <label><span>First name</span><input type="text" data-a="first" maxlength="24" autocomplete="off" spellcheck="false" placeholder="First"></label>
+    <label><span>Last name</span><input type="text" data-a="last" maxlength="24" autocomplete="off" spellcheck="false" placeholder="Last"></label>
+    <label><span>Region</span><select data-a="region"><option value="Americas">Americas &amp; Oceania</option><option value="Europe">Europe</option></select></label>
+    <label><span>Ruleset</span><select data-a="mode"><option>PvP</option><option>Normal</option><option>RP</option></select></label>
+  </div>
+  <div class="arm-go">
+    <div class="arm-plate" data-a="plate" aria-live="polite"></div>
+    <a class="arm-btn" data-a="go" href="https://armorywowforever.com/" target="_blank" rel="noopener">Copy name and open the armory <span aria-hidden="true">↗</span></a>
+  </div>
+  <p class="arm-msg" data-a="msg" aria-live="polite"></p>
+</div>
+
+<section class="read arm-block" id="arm-crew">
+  <div class="kicker">Your crew</div><h3>Everyone on your Party board</h3>
+  <p>The characters from the <a href="#party">Party board</a> and your own character setup, ready to look up. Use full first and last names on the board so the armory search finds them.</p>
+</section>
+<div class="arm-crew wide" data-a="crew"></div>
+
+<section class="read arm-block" id="arm-shows">
+  <div class="kicker">What it shows</div><h3>On each character page</h3>
+</section>
+<div class="arm-shows wide">
+  <div class="arm-tile"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20l8-8"/><rect x="12" y="3" width="9" height="7" rx="1.5" transform="rotate(45 16.5 6.5)"/></svg><h4>Gear, slot by slot</h4><p>Every equipped item with its gems, enchants and set bonuses, so you can see exactly what a mate is wearing before you pass on a drop.</p></div><div class="arm-tile"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 10a6 6 0 0112 0v5l-2 3H8l-2-3z"/><circle cx="9.5" cy="11" r="1.2"/><circle cx="14.5" cy="11" r="1.2"/><path d="M10 18v2M14 18v2"/></svg><h4>The character in 3D</h4><p>A turnable model of the hero in their current gear, built from Wowhead&#x27;s model viewer.</p></div><div class="arm-tile"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h11v13a3 3 0 01-3 3H6a3 3 0 01-3-3V8h4"/><path d="M7 4v13M10 8h5M10 12h5"/></svg><h4>Talents and dual spec</h4><p>Both talent builds side by side, including Forever&#x27;s new talents.</p></div><div class="arm-tile"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4"/><path d="M4 20h16"/><path d="M8 16l4-5 3 3 5-7"/></svg><h4>Gearscore and the leaderboard</h4><p>A single gear score per character, and a leaderboard you can filter by region.</p></div><div class="arm-tile"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 5.1 5.5.5-4.2 3.7 1.3 5.4L12 15l-4.8 2.7 1.3-5.4L4.3 8.6l5.5-.5z"/></svg><h4>Talent calculator</h4><p>Plan a build for any of the nine classes before you spend the points, in eight languages.</p></div><div class="arm-tile"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10l8-6 8 6v10"/><path d="M9 20v-6h6v6"/></svg><h4>Guilds</h4><p>Search a guild as well as a character, once your crew has one.</p></div>
+</div>
+<div class="read">
+  <div class="note info"><svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 5.1 5.5.5-4.2 3.7 1.3 5.4L12 15l-4.8 2.7 1.3-5.4L4.3 8.6l5.5-.5z"/></svg><p><b>Why it opens in a new tab.</b> This guide can't show another website inside it or read live character data, so the armory opens on its own. The armory is a community site built on Blizzard's character data, not a Blizzard page.</p></div>
+  <p class="small">Checked 9 Nov 2026 from the armory's home page. Not affiliated with this guide.</p>
+</div>
 </section><div class="foot">Compiled by Claude · Edition 09 Nov 2026. Sources are listed in the Levelling guide tab.</div></div>
   </main>
 </div>
@@ -2866,6 +2988,99 @@ html.sp-open { overflow: hidden; }
     if (!seen()) open();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
+})();
+
+/* Armory tab: character lookup launcher for armorywowforever.com and the crew cards. */
+(function () {
+  var look = document.getElementById("arm-look");
+  if (!look) return;
+  var KEY = "wfg.armory.v1";
+  var dataEl = document.getElementById("party-data");
+  var CL = {};
+  try { CL = JSON.parse(dataEl.textContent).classes || {}; } catch (e) {}
+  var crewEl = document.querySelector('[data-a="crew"]');
+  function q(k) { return look.querySelector('[data-a="' + k + '"]'); }
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function get(k, d) { try { var o = JSON.parse(localStorage.getItem(k) || "null"); return o == null ? d : o; } catch (e) { return d; } }
+  function put(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  function tidy(s) { s = String(s || "").replace(/\s+/g, " ").trim(); return s ? s.charAt(0).toUpperCase() + s.slice(1) : ""; }
+
+  var st = get(KEY, {}) || {};
+  var party = get("wfg.party.v1", null);
+  if (!st.first && party && party.me) {
+    var bits = String(party.me).trim().split(/\s+/);
+    st.first = bits[0] || ""; st.last = bits.slice(1).join(" ");
+  }
+  q("first").value = st.first || ""; q("last").value = st.last || "";
+  if (st.region) q("region").value = st.region;
+  if (st.mode) q("mode").value = st.mode;
+
+  function fullName() { return [tidy(q("first").value), tidy(q("last").value)].filter(Boolean).join(" "); }
+  function plate() {
+    var n = fullName();
+    q("plate").innerHTML = n ? '<span class="arm-pn">' + esc(n) + '</span><span class="arm-pr">' + esc(q("region").value) + " · " + esc(q("mode").value) + "</span>"
+      : '<span class="arm-pr">Type a name to look up</span>';
+    put(KEY, { first: q("first").value.trim(), last: q("last").value.trim(), region: q("region").value, mode: q("mode").value });
+  }
+  ["first", "last"].forEach(function (k) { q(k).addEventListener("input", plate); });
+  ["region", "mode"].forEach(function (k) { q(k).addEventListener("change", plate); });
+  plate();
+
+  var msgT, toast = document.createElement("div");
+  toast.className = "arm-toast"; toast.setAttribute("role", "status"); toast.hidden = true; document.body.appendChild(toast);
+  function say(t) {
+    var m = q("msg"); m.textContent = t; toast.textContent = t; toast.hidden = false;
+    clearTimeout(msgT); msgT = setTimeout(function () { m.textContent = ""; toast.hidden = true; }, 7000);
+  }
+  // Copy inside the click itself (browsers only allow it there), then let the link open normally.
+  function copyThenGo(name, region, mode) {
+    var where = (region || "Americas") + " and " + (mode || "PvP");
+    if (!name) { say("Opening the armory. Search for the character there, under " + where + "."); return; }
+    var ok = function () { say("Copied “" + name + "”. Paste it into the armory's search and pick " + where + "."); };
+    var no = function () { say("Search the armory for “" + name + "” under " + where + "."); };
+    try { navigator.clipboard.writeText(name).then(ok, no); } catch (e) { no(); }
+  }
+  q("go").addEventListener("click", function () { copyThenGo(fullName(), q("region").value, q("mode").value); });
+
+  function initials(n) { var p = String(n).trim().split(/\s+/); return ((p[0] || "?").charAt(0) + (p[1] ? p[1].charAt(0) : "")).toUpperCase(); }
+  function crew() {
+    if (!crewEl) return;
+    var P = get("wfg.party.v1", { me: "", members: [] }) || { members: [] };
+    var o = get("wfg.v1", null), pr = o && o.profile;
+    var list = (P.members || []).slice();
+    if (pr && P.me) {
+      var mine = list.filter(function (m) { return String(m.name).toLowerCase() === String(P.me).toLowerCase(); })[0];
+      if (mine) { mine.cls = pr.cls; mine.lvl = pr.level; mine.you = true; }
+      else list.unshift({ name: P.me, cls: pr.cls, lvl: pr.level, you: true });
+    }
+    if (!list.length) {
+      crewEl.innerHTML = '<div class="arm-empty"><img src="img/emblem-192.png" alt="" width="56" height="56"><p>No heroes yet. Add yourself and your mates on the <a href="#party">Party board</a> and they will line up here, ready to look up.</p></div>';
+      return;
+    }
+    crewEl.innerHTML = list.map(function (m) {
+      var c = CL[m.cls] || { label: m.cls || "Adventurer", color: "#b5862f" };
+      var two = /\s/.test(String(m.name).trim());
+            var cb = /^#f{6}$/i.test(c.color) ? "#c3c8d4" : c.color;
+      return '<article class="arm-card" style="--cc:' + c.color + ';--cb:' + cb + '">' +
+        '<div class="arm-banner" aria-hidden="true"><span>' + esc(initials(m.name)) + "</span></div>" +
+        '<div class="arm-body"><h4>' + esc(m.name) + (m.you ? ' <em>you</em>' : "") + "</h4>" +
+        '<div class="arm-meta"><span class="arm-cls">' + esc(c.label) + '</span><span class="arm-lv">Level ' + esc(m.lvl) + "</span></div>" +
+        (two ? "" : '<p class="arm-warn">Add the last name on the Party board for an exact search.</p>') +
+        '<a class="arm-link" data-copy="' + esc(m.name) + '" href="https://armorywowforever.com/" target="_blank" rel="noopener">View on the armory <span aria-hidden="true">↗</span></a></div></article>';
+    }).join("");
+  }
+  crewEl && crewEl.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[data-copy]");
+    if (a) copyThenGo(a.getAttribute("data-copy"), q("region").value, q("mode").value);
+  });
+  crew();
+  window.addEventListener("hashchange", crew);
+  window.addEventListener("focus", crew);
+  document.addEventListener("wfg:profile", crew);
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest && e.target.closest('[data-tab="armory"]');
+    if (t) setTimeout(crew, 0);
+  });
 })();
 </script>
 <script>
